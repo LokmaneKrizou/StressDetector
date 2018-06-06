@@ -53,7 +53,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import umich.cse.yctung.androidlibsvm.LibSVM;
 
 /**
  * This example will illustrate how to connect to a Muse headband,
