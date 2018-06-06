@@ -178,7 +178,7 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
         // simplify the connection process.  This requires access to the COARSE_LOCATION
         // or FINE_LOCATION permissions.  Make sure we have these permissions before
         // proceeding.
-        ensurePermissions();
+
 
         // Load and initialize our UI.
         initUI();
@@ -260,37 +260,6 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
      * If the permission is not granted, then Muse 2016 (MU-02) headbands will
      * not be discovered and a SecurityException will be thrown.
      */
-    private void ensurePermissions() {
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            // We don't have the ACCESS_COARSE_LOCATION permission so create the dialogs asking
-            // the user to grant us the permission.
-
-            DialogInterface.OnClickListener buttonListener =
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which){
-                            dialog.dismiss();
-                            ActivityCompat.requestPermissions(MainActivity2.this,
-                                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                                    0);
-                        }
-                    };
-
-            // This is the context dialog which explains to the user the reason we are requesting
-            // this permission.  When the user presses the positive (I Understand) button, the
-            // standard Android permission dialog will be displayed (as defined in the button
-            // listener above).
-            AlertDialog introDialog = new AlertDialog.Builder(this)
-                    .setTitle(R.string.permission_dialog_title)
-                    .setMessage(R.string.permission_dialog_description)
-                    .setPositiveButton(R.string.permission_dialog_understand, buttonListener)
-                    .create();
-            introDialog.show();
-        }
-    }
-
 
     //--------------------------------------
     // Listeners
