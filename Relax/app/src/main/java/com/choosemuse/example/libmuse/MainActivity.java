@@ -32,7 +32,6 @@ import com.choosemuse.libmuse.MuseManagerAndroid;
 import com.choosemuse.libmuse.MuseVersion;
 import com.choosemuse.libmuse.Result;
 import com.choosemuse.libmuse.ResultLevel;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -54,6 +53,8 @@ import android.bluetooth.BluetoothAdapter;
 
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+
+import umich.cse.yctung.androidlibsvm.LibSVM;
 
 /**
  * This example will illustrate how to connect to a Muse headband,
@@ -185,9 +186,7 @@ public class MainActivity extends Activity implements OnClickListener {
         // This must come before other LibMuse API calls as it also loads the library.
         manager = MuseManagerAndroid.getInstance();
         manager.setContext(this);
-
         Log.i(TAG, "LibMuse version=" + LibmuseVersion.instance().getString());
-
         WeakReference<MainActivity> weakActivity =
                 new WeakReference<MainActivity>(this);
         // Register a listener to receive connection state changes.
