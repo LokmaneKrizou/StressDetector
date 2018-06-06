@@ -50,7 +50,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.bluetooth.BluetoothAdapter;
 
-
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
