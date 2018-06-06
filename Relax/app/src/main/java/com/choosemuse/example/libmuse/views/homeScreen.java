@@ -21,7 +21,9 @@ public class homeScreen extends Fragment{
         Log.d("Start Fragment",TAG);
         return rootView;
     }
-
+//TODO add Graph view (MpChartAndroid)
+//TODO add Stress level and animate the circle view(change the color according to the stress level)
+// TODO start the feedback whenever there is problem with the stress
 }
 
 

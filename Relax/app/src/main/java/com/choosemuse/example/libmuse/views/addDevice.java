@@ -22,5 +22,6 @@ public class addDevice extends Fragment {
 
         return rootView;
     }
-
+//TODO add muse device connection here
+    // TODO figure out how to share the muse manager to home activity
 }

@@ -20,6 +20,7 @@ public class settings extends Fragment {
 
         return rootView;
     }
-
+//  TODO: Add feedback list and create custom listView
+//  TODO: send selected feedback using sharedPreference
 
 }
