@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="read" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -45,62 +44,61 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1676">
-              <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            <state relative-caret-position="248">
+              <caret line="396" column="22" lean-forward="true" selection-start-line="396" selection-start-column="22" selection-end-line="396" selection-end-column="22" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
                 <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#11751#12179#0" expanded="true" />
+                <element signature="e#12178#12179#0" expanded="true" />
+                <element signature="e#12599#12631#0" expanded="true" />
+                <element signature="e#12665#12703#0" expanded="true" />
+                <element signature="e#12744#12781#0" expanded="true" />
+                <element signature="e#14090#15124#0" expanded="true" />
+                <element signature="e#15062#15080#0" expanded="true" />
+                <element signature="e#15123#15124#0" expanded="true" />
                 <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#19126#19550#0" expanded="true" />
+                <element signature="e#19549#19550#0" expanded="true" />
                 <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#25842#26543#0" expanded="true" />
-                <element signature="e#26542#26543#0" expanded="true" />
-                <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#25840#26541#0" expanded="true" />
+                <element signature="e#26540#26541#0" expanded="true" />
+                <element signature="e#26892#27060#0" expanded="true" />
+                <element signature="e#27059#27060#0" expanded="true" />
+                <element signature="e#27277#27835#0" expanded="true" />
+                <element signature="e#27834#27835#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="MuseDataType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MuseDataType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
-              <folding>
-                <element signature="e#959#979#0" expanded="true" />
-                <element signature="e#1172#1188#0" expanded="true" />
-                <element signature="e#1400#1419#0" expanded="true" />
-                <element signature="e#8211#8230#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="85">
+              <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -113,6 +111,8 @@
       <find>alpha</find>
       <find>gamma</find>
       <find>MuseDataPacketType</find>
+      <find>writeDataPacketToFile</find>
+      <find>file was</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2133,9 +2133,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MuseDataType.java" />
       </list>
     </option>
   </component>
@@ -2205,6 +2207,23 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Relax" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Relax" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="libmuse" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Relax" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Relax" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2215,6 +2234,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Relax" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Relax" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2434,7 +2462,7 @@
     <frame x="-8" y="-8" width="1366" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2477,46 +2505,40 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3009">
           <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2533,7 +2555,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2566,25 +2590,35 @@
         <state relative-caret-position="3111">
           <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2610,7 +2644,9 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2628,25 +2664,35 @@
         <state relative-caret-position="170">
           <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2675,7 +2721,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2685,25 +2733,35 @@
         <state relative-caret-position="111">
           <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2728,7 +2786,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2761,25 +2821,35 @@
         <state relative-caret-position="3111">
           <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2809,7 +2879,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2833,25 +2905,35 @@
         <state relative-caret-position="102">
           <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2860,7 +2942,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2893,25 +2977,35 @@
         <state relative-caret-position="3111">
           <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2922,17 +3016,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -2952,54 +3035,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="51">
+          <caret line="3" column="27" lean-forward="true" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+          <folding>
+            <element signature="e#730#748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="261" column="4" lean-forward="false" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
           <folding>
-            <element signature="e#959#979#0" expanded="true" />
-            <element signature="e#1172#1188#0" expanded="true" />
-            <element signature="e#1400#1419#0" expanded="true" />
-            <element signature="e#8211#8230#0" expanded="true" />
+            <element signature="e#959#979#0" expanded="false" />
+            <element signature="e#1172#1188#0" expanded="false" />
+            <element signature="e#1400#1419#0" expanded="false" />
+            <element signature="e#8211#8230#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="52" lean-forward="false" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MuseDataType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/choosemuse/example/libmuse/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1676">
-          <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        <state relative-caret-position="248">
+          <caret line="396" column="22" lean-forward="true" selection-start-line="396" selection-start-column="22" selection-end-line="396" selection-end-column="22" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
             <element signature="docComment;method#ensurePermissions#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#11751#12179#0" expanded="true" />
+            <element signature="e#12178#12179#0" expanded="true" />
+            <element signature="e#12599#12631#0" expanded="true" />
+            <element signature="e#12665#12703#0" expanded="true" />
+            <element signature="e#12744#12781#0" expanded="true" />
+            <element signature="e#14090#15124#0" expanded="true" />
+            <element signature="e#15062#15080#0" expanded="true" />
+            <element signature="e#15123#15124#0" expanded="true" />
             <element signature="method#getEegChannelValues#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initUI#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#19126#19550#0" expanded="true" />
+            <element signature="e#19549#19550#0" expanded="true" />
             <element signature="method#updateTheta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateGamma#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateBeta#0;class#MainActivity#0" expanded="false" />
             <element signature="method#updateAlpha#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#updateEeg#0;class#MainActivity#0" expanded="false" />
             <element signature="method#writeToFile#0;class#MainActivity#0" expanded="false" />
             <element signature="method#readFromFile#0;class#MainActivity#0" expanded="false" />
             <element signature="class#MuseL#0;class#MainActivity#0" expanded="false" />
             <element signature="class#ConnectionListener#0;class#MainActivity#0" expanded="false" />
             <element signature="class#DataListener#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#25842#26543#0" expanded="true" />
-            <element signature="e#26542#26543#0" expanded="true" />
-            <element signature="method#writeDataPacketToFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#saveFile#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#playMuseFile#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#25840#26541#0" expanded="true" />
+            <element signature="e#26540#26541#0" expanded="true" />
+            <element signature="e#26892#27060#0" expanded="true" />
+            <element signature="e#27059#27060#0" expanded="true" />
+            <element signature="e#27277#27835#0" expanded="true" />
+            <element signature="e#27834#27835#0" expanded="true" />
           </folding>
         </state>
       </provider>

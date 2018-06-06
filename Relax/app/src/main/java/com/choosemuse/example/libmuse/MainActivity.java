@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // Load and initialize our UI.
         initUI();
 
-//        fileThread.start();
+        fileThread.start();
 
         // Start our asynchronous updates of the UI.
         handler.post(tickUi);
@@ -246,10 +246,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 muse.unregisterAllListeners();
                 muse.registerConnectionListener(connectionListener);
                 muse.registerDataListener(dataListener, MuseDataPacketType.EEG);
-                muse.registerDataListener(dataListener, MuseDataPacketType.ALPHA_RELATIVE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.BETA_RELATIVE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.GAMMA_RELATIVE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.THETA_RELATIVE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.ALPHA_ABSOLUTE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.BETA_ABSOLUTE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.GAMMA_ABSOLUTE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.THETA_ABSOLUTE);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.BATTERY);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.DRL_REF);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.QUANTIZATION);
@@ -395,22 +395,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 getEegChannelValues(eegBuffer, pkt);
                 eegStale = true;
                 break;
-            case THETA_RELATIVE:
+            case THETA_ABSOLUTE:
                 assert(thetaBuffer.length >= n);
                 getEegChannelValues(thetaBuffer, pkt);
                 thetaStale = true;
                 break;
-            case ALPHA_RELATIVE:
+            case ALPHA_ABSOLUTE:
                 assert(alphaBuffer.length >= n);
                 getEegChannelValues(alphaBuffer, pkt);
                 alphaStale = true;
                 break;
-            case BETA_RELATIVE:
+            case BETA_ABSOLUTE:
                 assert(betaBuffer.length >= n);
                 getEegChannelValues(betaBuffer, pkt);
                 betaStale = true;
                 break;
-            case GAMMA_RELATIVE:
+            case GAMMA_ABSOLUTE:
                 assert(gammaBuffer.length >= n);
                 getEegChannelValues(gammaBuffer, pkt);
                 gammaStale = true;
