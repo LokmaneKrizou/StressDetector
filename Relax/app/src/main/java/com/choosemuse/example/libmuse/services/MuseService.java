@@ -28,7 +28,7 @@ public class MuseService extends Service {
     public static String ACTION_MUSE_CONNECTED = "ACTION_MUSE_CONNECTED";
     public static String ACTION_MUSE_DISCONNECTED = "ACTION_MUSE_DISCONNECTED";
     public static String ACTION_MUSE_ALPHA = "ACTION_MUSE_ALPHA";
-    public static String ACTION_MUSE_BETHA = "ACTION_MUSE_BETHA";
+    public static String ACTION_MUSE_BETA = "ACTION_MUSE_BETA";
     public static String ACTION_MUSE_GAMMA = "ACTION_MUSE_GAMMA";
     public static String ACTION_MUSE_THETA = "ACTION_MUSE_THETA";
     public static String EXTRA_DATA = "EXTRA_DATA";
@@ -126,7 +126,32 @@ public class MuseService extends Service {
             if(p.packetType().equals(MuseDataPacketType.ALPHA_RELATIVE)) {
                 Intent newData = new Intent(MuseService.ACTION_MUSE_ALPHA);
                 newData.putExtra(MuseService.EXTRA_DATA, buffer);
-                Log.i("data", String.valueOf(buffer[0])+""+String.valueOf(buffer[1])+""+String.valueOf(buffer[2])+""+String.valueOf(buffer[3]));
+                Log.i("data alpha", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+                sendBroadcast(newData);
+            }
+
+            if(p.packetType().equals(MuseDataPacketType.BETA_RELATIVE)) {
+                Intent newData = new Intent(MuseService.ACTION_MUSE_BETA);
+                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+                Log.i("data beta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+                sendBroadcast(newData);
+            }
+
+            if(p.packetType().equals(MuseDataPacketType.GAMMA_RELATIVE)) {
+                Intent newData = new Intent(MuseService.ACTION_MUSE_GAMMA);
+                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+                Log.i("data gamma", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+                sendBroadcast(newData);
+            }
+
+            if(p.packetType().equals(MuseDataPacketType.THETA_RELATIVE)) {
+                Intent newData = new Intent(MuseService.ACTION_MUSE_THETA);
+                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+                Log.i("data theta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
                 sendBroadcast(newData);
             }
         }
