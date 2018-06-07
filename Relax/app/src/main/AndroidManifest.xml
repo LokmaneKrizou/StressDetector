@@ -5,8 +5,8 @@
     android:versionName="1.0">
 
     <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="27" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -28,11 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"/>
+            android:label="@string/title_activity_main"></activity>
 
+        <service android:name=".services.MuseService" />
     </application>
 
 </manifest>

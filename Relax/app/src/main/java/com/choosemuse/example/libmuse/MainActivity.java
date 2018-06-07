@@ -3,6 +3,7 @@ package com.choosemuse.example.libmuse;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.choosemuse.example.libmuse.services.MuseService;
 import com.choosemuse.example.libmuse.views.addDevice;
 import com.choosemuse.example.libmuse.views.homeScreen;
 import com.choosemuse.example.libmuse.views.settings;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         ensurePermissions();
+        startService(new Intent(this, MuseService.class));
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
