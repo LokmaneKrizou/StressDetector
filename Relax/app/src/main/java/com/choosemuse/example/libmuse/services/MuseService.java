@@ -31,7 +31,11 @@ public class MuseService extends Service {
     public static String ACTION_MUSE_BETA = "ACTION_MUSE_BETA";
     public static String ACTION_MUSE_GAMMA = "ACTION_MUSE_GAMMA";
     public static String ACTION_MUSE_THETA = "ACTION_MUSE_THETA";
+    public static String ACTION_MUSE_WAVES = "ACTION_MUSE_WAVES";
     public static String EXTRA_DATA = "EXTRA_DATA";
+
+    public int waveCounter = 0;
+    double[] newAverage = {0 ,0, 0, 0};
 
     private MuseManagerAndroid manager;
     private Muse muse;
@@ -114,6 +118,7 @@ public class MuseService extends Service {
         @Override
         public void receiveMuseDataPacket(final MuseDataPacket p, final Muse muse) {
 
+            double avg_alpha = 0, avg_beta = 0, avg_gamma = 0, avg_theta = 0;
             //received data package
             double[] buffer = new double[6];
             buffer[0] = p.getEegChannelValue(Eeg.EEG1);
@@ -124,36 +129,84 @@ public class MuseService extends Service {
             buffer[5] = p.getEegChannelValue(Eeg.AUX_RIGHT);
 
             if(p.packetType().equals(MuseDataPacketType.ALPHA_RELATIVE)) {
-                Intent newData = new Intent(MuseService.ACTION_MUSE_ALPHA);
-                newData.putExtra(MuseService.EXTRA_DATA, buffer);
-                Log.i("data alpha", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
-                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
-                sendBroadcast(newData);
+//                Intent newData = new Intent(MuseService.ACTION_MUSE_ALPHA);
+//                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+//                Log.i("data alpha", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+//                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+//                sendBroadcast(newData);
+                avg_alpha = getAverage(buffer);
             }
 
-            if(p.packetType().equals(MuseDataPacketType.BETA_RELATIVE)) {
-                Intent newData = new Intent(MuseService.ACTION_MUSE_BETA);
-                newData.putExtra(MuseService.EXTRA_DATA, buffer);
-                Log.i("data beta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
-                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
-                sendBroadcast(newData);
+            else if(p.packetType().equals(MuseDataPacketType.BETA_RELATIVE)) {
+//                Intent newData = new Intent(MuseService.ACTION_MUSE_BETA);
+//                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+//                Log.i("data beta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+//                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+//                sendBroadcast(newData);
+                avg_beta = getAverage(buffer);
             }
 
-            if(p.packetType().equals(MuseDataPacketType.GAMMA_RELATIVE)) {
-                Intent newData = new Intent(MuseService.ACTION_MUSE_GAMMA);
-                newData.putExtra(MuseService.EXTRA_DATA, buffer);
-                Log.i("data gamma", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
-                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
-                sendBroadcast(newData);
+            else if(p.packetType().equals(MuseDataPacketType.THETA_RELATIVE)) {
+//                Intent newData = new Intent(MuseService.ACTION_MUSE_THETA);
+//                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+//                Log.i("data theta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+//                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+//                sendBroadcast(newData);
+                avg_theta = getAverage(buffer);
             }
 
-            if(p.packetType().equals(MuseDataPacketType.THETA_RELATIVE)) {
-                Intent newData = new Intent(MuseService.ACTION_MUSE_THETA);
-                newData.putExtra(MuseService.EXTRA_DATA, buffer);
-                Log.i("data theta", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
-                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
-                sendBroadcast(newData);
+            else if(p.packetType().equals(MuseDataPacketType.GAMMA_RELATIVE)) {
+//                Intent newData = new Intent(MuseService.ACTION_MUSE_GAMMA);
+//                newData.putExtra(MuseService.EXTRA_DATA, buffer);
+//                Log.i("data gamma", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+//                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
+//                sendBroadcast(newData);
+                avg_gamma = getAverage(buffer);
             }
+
+            if(avg_alpha != 0)
+                newAverage[0] = avg_alpha;
+            if(avg_beta != 0)
+                newAverage[1] = avg_beta;
+            if(avg_gamma != 0)
+                newAverage[2] = avg_gamma;
+            if(avg_theta != 0)
+                newAverage[3] = avg_theta;
+
+            if(isNotZeroOrNan(newAverage)) {
+                Log.i("data average", newAverage[0] + " | " + newAverage[1] + " | " +
+                        newAverage[2] + " | " + newAverage[3]);
+
+                Intent newData = new Intent(MuseService.ACTION_MUSE_WAVES);
+                newData.putExtra(MuseService.EXTRA_DATA, newAverage);
+                sendBroadcast(newData);
+
+                newAverage[0] = 0;
+                newAverage[1] = 0;
+                newAverage[2] = 0;
+                newAverage[3] = 0;
+            }
+        }
+
+        boolean isNotZeroOrNan(double[] array) {
+            if(array[0] == 0 || array[1] == 0 || array[2] == 0 || array[3] == 0)
+                return  false;
+            if(Double.isNaN(array[0]) || Double.isNaN(array[1]) || Double.isNaN(array[2]) || Double.isNaN(array[3]))
+                return  false;
+
+            return true;
+        }
+
+        Double getAverage(double[] buffer) {
+            double sum = 0;
+            int count = 0;
+            for(int i = 0; i < 4; i++)
+                if (!Double.isNaN(buffer[i])) {
+                    sum += buffer[i];
+                    count = i;
+                }
+
+            return  sum / count;
         }
 
         @Override
