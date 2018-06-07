@@ -15,7 +15,7 @@ public class sampleData {
     private int participantId;
 
     @ColumnInfo(name = "participant_data")
-    private ArrayList<MuseDataType> participantData;
+    private double participantData;
 
 
     public int getParticipantId() {
@@ -25,10 +25,10 @@ public class sampleData {
         this.participantId = participantId;
     }
 
-    public ArrayList<MuseDataType> getParticipantData() {
+    public double getParticipantData() {
         return participantData;
     }
-    public void setParticipantData(ArrayList<MuseDataType> participantData) {
+    public void setParticipantData(double participantData) {
         this.participantData = participantData;
     }
 

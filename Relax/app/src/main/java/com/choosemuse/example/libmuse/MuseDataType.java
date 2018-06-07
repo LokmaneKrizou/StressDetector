@@ -15,7 +15,7 @@ public class MuseDataType {
         this.theta = theta;
     }
 
-    MuseDataType () {
+    public MuseDataType() {
 
     }
 

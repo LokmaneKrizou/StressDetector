@@ -20,7 +20,7 @@ public interface sampleDataDao {
 
 
     @Query("SELECT participant_data FROM sampleData")
-    List<MuseDataType> getParticipantData();
+    List<Double> getParticipantData();
 
     @Query("SELECT COUNT(*) from sampleData")
     int countTasks();
