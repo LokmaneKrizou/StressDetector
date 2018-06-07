@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Locale;
@@ -122,6 +123,9 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
     private final double[] gammaBuffer= new double[6];
     private boolean gammaStale;
 
+    ArrayList<MuseDataType> museData = new ArrayList<>();
+
+    ArrayList<TextView> alphaText, betaText, thetaText, gammaText;
     /**
      * We will be updating the UI using a handler instead of in packet handlers because
      * packets come in at a very high frequency and it only makes sense to update the UI
@@ -179,11 +183,10 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
         // or FINE_LOCATION permissions.  Make sure we have these permissions before
         // proceeding.
 
-
         // Load and initialize our UI.
         initUI();
 
-        fileThread.start();
+//        fileThread.start();
 
         // Start our asynchronous updates of the UI.
         handler.post(tickUi);
@@ -222,10 +225,10 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
                 muse.unregisterAllListeners();
                 muse.registerConnectionListener(connectionListener);
                 muse.registerDataListener(dataListener, MuseDataPacketType.EEG);
-                muse.registerDataListener(dataListener, MuseDataPacketType.ALPHA_ABSOLUTE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.BETA_ABSOLUTE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.GAMMA_ABSOLUTE);
-                muse.registerDataListener(dataListener, MuseDataPacketType.THETA_ABSOLUTE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.ALPHA_RELATIVE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.BETA_RELATIVE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.GAMMA_RELATIVE);
+                muse.registerDataListener(dataListener, MuseDataPacketType.THETA_RELATIVE);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.BATTERY);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.DRL_REF);
 //                muse.registerDataListener(dataListener, MuseDataPacketType.QUANTIZATION);
@@ -317,7 +320,7 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
         if (current == ConnectionState.DISCONNECTED) {
             Log.i(TAG, "Muse disconnected:" + muse.getName());
             // Save the data file once streaming has stopped.
-            saveFile();
+            //saveFile();
             // We have disconnected from the headband, so set our cached copy to null.
             this.muse = null;
         }
@@ -331,46 +334,30 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
      * @param muse  The headband that sent the information.
      */
     public void receiveMuseDataPacket(final MuseDataPacket pkt, final Muse muse) {
-        writeDataPacketToFile(pkt);
 
         final long n = pkt.valuesSize();
-        switch (pkt.packetType()) {
-            case EEG:
-                assert(eegBuffer.length >= n);
-                getEegChannelValues(eegBuffer, pkt);
-                eegStale = true;
-                break;
-            case THETA_ABSOLUTE:
-                assert(thetaBuffer.length >= n);
-                getEegChannelValues(thetaBuffer, pkt);
-                thetaStale = true;
-                break;
-            case ALPHA_ABSOLUTE:
-                assert(alphaBuffer.length >= n);
-                getEegChannelValues(alphaBuffer, pkt);
-                alphaStale = true;
-                break;
-            case BETA_ABSOLUTE:
-                assert(betaBuffer.length >= n);
-                getEegChannelValues(betaBuffer, pkt);
-                betaStale = true;
-                break;
-            case GAMMA_ABSOLUTE:
-                assert(gammaBuffer.length >= n);
-                getEegChannelValues(gammaBuffer, pkt);
-                gammaStale = true;
-                break;
-        }
-    }
+        Log.d("packet type", pkt.packetType().toString());
 
-    /**
-     * You will receive a callback to this method each time an artifact packet is generated if you
-     * have registered for the ARTIFACTS data type.  MuseArtifactPackets are generated when
-     * eye blinks are detected, the jaw is clenched and when the headband is put on or removed.
-     * @param p     The artifact packet with the data from the headband.
-     * @param muse  The headband that sent the information.
-     */
-    public void receiveMuseArtifactPacket(final MuseArtifactPacket p, final Muse muse) {
+        if (pkt.packetType().equals(MuseDataPacketType.EEG)) {
+            getEegChannelValues(eegBuffer, pkt);
+            eegStale = true;
+        }
+        if (pkt.packetType().equals(MuseDataPacketType.THETA_RELATIVE)) {
+            getEegChannelValues(thetaBuffer, pkt);
+            thetaStale = true;
+        }
+        if (pkt.packetType().equals(MuseDataPacketType.ALPHA_RELATIVE)) {
+            getEegChannelValues(alphaBuffer, pkt);
+            alphaStale = true;
+        }
+        if (pkt.packetType().equals(MuseDataPacketType.BETA_RELATIVE)) {
+            getEegChannelValues(betaBuffer, pkt);
+            betaStale = true;
+        }
+        if (pkt.packetType().equals(MuseDataPacketType.GAMMA_RELATIVE)) {
+            getEegChannelValues(gammaBuffer, pkt);
+            gammaStale = true;
+        }
     }
 
     /**
@@ -385,8 +372,6 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
         buffer[4] = p.getEegChannelValue(Eeg.AUX_LEFT);
         buffer[5] = p.getEegChannelValue(Eeg.AUX_RIGHT);
     }
-
-
 
 
     //--------------------------------------
@@ -417,29 +402,58 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
     private final Runnable tickUi = new Runnable() {
         @Override
         public void run() {
+            MuseDataType newMuseData = new MuseDataType();
+
             if (eegStale)
                 updateEeg();
 
-            if (thetaStale)
+            if (thetaStale) {
+                newMuseData.theta = thetaBuffer;
                 updateTheta();
+            }
 
-            if (alphaStale)
+            if (alphaStale) {
+                newMuseData.alpha = alphaBuffer;
                 updateAlpha();
+            }
 
-            if (betaStale)
+            if (betaStale) {
+                newMuseData.beta = betaBuffer;
                 updateBeta();
+            }
 
-            if (gammaStale)
+            if (gammaStale) {
+                newMuseData.gamma = gammaBuffer;
                 updateGamma();
+            }
+
+            museData.add(newMuseData);
+            printWaveArray(museData.get(museData.size() - 1));
 
             handler.postDelayed(tickUi, 1000 / 60);
         }
     };
 
+    void printWaveArray(MuseDataType museData) {
+        Log.d("Print array alpha", museData.alpha[0] + " | " + museData.alpha[1] + " | " +
+                museData.alpha[2] + " | " + museData.alpha[3]);
+        Log.d("Print array beta", museData.beta[0] + " | " + museData.beta[1] + " | " +
+                museData.beta[2] + " | " + museData.beta[3]);
+        Log.d("Print array theta", museData.theta[0] + " | " + museData.theta[1] + " | " +
+                museData.theta[2] + " | " + museData.theta[3]);
+        Log.d("Print array gamma", museData.gamma[0] + " | " + museData.gamma[1] + " | " +
+                museData.gamma[2] + " | " + museData.gamma[3]);
+    }
+
     /**
      * The following methods update the TextViews in the UI with the data
      * from the buffers.
      */
+    private void updateWaveValue(ArrayList<TextView> textViews) {
+        for(int i = 0; i < 4; i++) {
+            textViews.get(i).setText(String.format(Locale.ENGLISH, "%6.2f", thetaBuffer[i]));
+        }
+    }
     private void updateTheta() {
         TextView elem1 = findViewById(R.id.theta1);
         elem1.setText(String.format(Locale.ENGLISH, "%6.2f", thetaBuffer[0]));
@@ -583,138 +597,7 @@ public class MainActivity2 extends AppCompatActivity implements OnClickListener 
 
         @Override
         public void receiveMuseArtifactPacket(final MuseArtifactPacket p, final Muse muse) {
-            activityRef.get().receiveMuseArtifactPacket(p, muse);
-        }
-    }
-
-    //--------------------------------------
-    // File I/O
-
-    /**
-     * We don't want to block the UI thread while we write to a file, so the file
-     * writing is moved to a separate thread.
-     */
-    private final Thread fileThread = new Thread() {
-        @Override
-        public void run() {
-            Looper.prepare();
-            fileHandler.set(new Handler());
-            final File dir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-            final File file = new File(dir, "new_muse_file.muse" );
-            // MuseFileWriter will append to an existing file.
-            // In this case, we want to start fresh so the file
-            // if it exists.
-            if (file.exists()) {
-                file.delete();
-            }
-            Log.i(TAG, "Writing data to: " + file.getAbsolutePath());
-            fileWriter.set(MuseFileFactory.getMuseFileWriter(file));
-            Looper.loop();
-        }
-    };
-
-    /**
-     * Writes the provided MuseDataPacket to the file.  MuseFileWriter knows
-     * how to write all packet types generated from LibMuse.
-     * @param p     The data packet to write.
-     */
-    private void writeDataPacketToFile(final MuseDataPacket p) {
-        Handler h = fileHandler.get();
-        if (h != null) {
-            h.post(new Runnable() {
-                @Override
-                public void run() {
-                    fileWriter.get().addDataPacket(0, p);
-                }
-            });
-        }
-    }
-
-    /**
-     * Flushes all the data to the file and closes the file writer.
-     */
-    private void saveFile() {
-        Handler h = fileHandler.get();
-        if (h != null) {
-            h.post(new Runnable() {
-                @Override public void run() {
-                    MuseFileWriter w = fileWriter.get();
-                    // Annotation strings can be added to the file to
-                    // give context as to what is happening at that point in
-                    // time.  An annotation can be an arbitrary string or
-                    // may include additional AnnotationData.
-                    w.addAnnotationString(0, "Disconnected");
-                    w.flush();
-                    w.close();
-                }
-            });
-        }
-    }
-
-    /**
-     * Reads the provided .muse file and prints the data to the logcat.
-     * @param name  The name of the file to read.  The file in this example
-     *              is assumed to be in the Environment.DIRECTORY_DOWNLOADS
-     *              directory.
-     */
-    private void playMuseFile(String name) {
-
-        File dir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-        File file = new File(dir, name);
-
-        final String tag = "Muse File Reader";
-
-        if (!file.exists()) {
-            Log.w(tag, "file doesn't exist");
-            return;
-        }
-
-        MuseFileReader fileReader = MuseFileFactory.getMuseFileReader(file);
-
-        // Loop through each message in the file.  gotoNextMessage will read the next message
-        // and return the result of the read operation as a Result.
-        Result res = fileReader.gotoNextMessage();
-        while (res.getLevel() == ResultLevel.R_INFO && !res.getInfo().contains("EOF")) {
-
-            MessageType type = fileReader.getMessageType();
-            int id = fileReader.getMessageId();
-            long timestamp = fileReader.getMessageTimestamp();
-
-            Log.i(tag, "type: " + type.toString() +
-                  " id: " + Integer.toString(id) +
-                  " timestamp: " + String.valueOf(timestamp));
-
-            switch(type) {
-                // EEG messages contain raw EEG data or DRL/REF data.
-                // EEG derived packets like ALPHA_RELATIVE and artifact packets
-                // are stored as MUSE_ELEMENTS messages.
-                case EEG:
-                case BATTERY:
-                case ACCELEROMETER:
-                case QUANTIZATION:
-                case GYRO:
-                case MUSE_ELEMENTS:
-                    MuseDataPacket packet = fileReader.getDataPacket();
-                    Log.i(tag, "data packet: " + packet.packetType().toString());
-                    break;
-                case VERSION:
-                    MuseVersion version = fileReader.getVersion();
-                    Log.i(tag, "version" + version.getFirmwareType());
-                    break;
-                case CONFIGURATION:
-                    MuseConfiguration config = fileReader.getConfiguration();
-                    Log.i(tag, "config" + config.getBluetoothMac());
-                    break;
-                case ANNOTATION:
-                    AnnotationData annotation = fileReader.getAnnotation();
-                    Log.i(tag, "annotation" + annotation.getData());
-                    break;
-                default:
-                    break;
-            }
-
-            // Read the next message.
-            res = fileReader.gotoNextMessage();
+//            activityRef.get().receiveMuseArtifactPacket(p, muse);
         }
     }
 }
