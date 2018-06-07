@@ -17,7 +17,8 @@ import static android.content.Context.MODE_PRIVATE;
 // Created by Lokmane Krizou on 6/6/2018.
 public class settings extends Fragment {
     private final String TAG = "settings";
-
+    SharedPreferences shared_pref;
+    SharedPreferences.Editor editor;
     RadioGroup actions_list;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,13 +27,13 @@ public class settings extends Fragment {
         Log.d("Start Fragment", TAG);
 
         actions_list = rootView.findViewById(R.id.actions_list);
-        final SharedPreferences shared_pref = getContext().getSharedPreferences(TAG, MODE_PRIVATE);
-        final SharedPreferences.Editor editor = shared_pref.edit();
+        shared_pref = getContext().getSharedPreferences(TAG, MODE_PRIVATE);
+        editor = shared_pref.edit();
 
-        actions_list.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
+        ((RadioButton)actions_list.getChildAt(shared_pref.getInt("action_type", 0))).setChecked(true);
+
+        actions_list.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 editor.putInt("action_type", actions_list.indexOfChild(group.findViewById(checkedId)));
                 editor.apply();
                 int read_option = shared_pref.getInt("action_type", 0);
