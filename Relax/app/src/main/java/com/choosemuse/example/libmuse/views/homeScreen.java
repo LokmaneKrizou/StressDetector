@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.choosemuse.example.libmuse.R;
@@ -52,13 +55,14 @@ public class homeScreen extends Fragment{
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
-
+    ImageView ball;
     MediaPlayer mediaPlayer;
-
+    android.view.View rootView;
+    int width=50;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
-        android.view.View rootView = inflater.inflate(R.layout.fragment_homescreen, container, false);
+        rootView = inflater.inflate(R.layout.fragment_homescreen, container, false);
         Log.d("Start Fragment",TAG);
         mChart = (LineChart) rootView.findViewById(R.id.chart1);
 
@@ -67,7 +71,6 @@ public class homeScreen extends Fragment{
         Description description = new Description();
         description.setText("");
         mChart.setDescription(description);
-
         // enable touch gestures
         mChart.setTouchEnabled(true);
 
@@ -82,16 +85,10 @@ public class homeScreen extends Fragment{
         // set an alternative background color
         mChart.setBackgroundColor(Color.WHITE);
         LineData data1 = new LineData();
-        LineData data2 = new LineData();
-        LineData data3 = new LineData();
-        LineData data4 = new LineData();
         data1.setValueTextColor(Color.BLUE);
 
         // add empty data
         mChart.setData(data1);
-        mChart.setData(data2);
-        mChart.setData(data3);
-        mChart.setData(data4);
         // get the legend (only possible after setting data)
         Legend l = mChart.getLegend();
 
@@ -119,15 +116,9 @@ public class homeScreen extends Fragment{
         mChart.getXAxis().setDrawGridLines(true);
         mChart.setDrawBorders(false);
 
-        feedMultiple();
 
         preferences = getContext().getSharedPreferences("settings", MODE_PRIVATE);
 
-
-        if (getSharedValue("action_type") == 0)
-            showImageFeedback();
-        else if(getSharedValue("action_type") == 1)
-            playMusicFeedback();
 
         IntentFilter filter = new IntentFilter();
 
@@ -141,6 +132,7 @@ public class homeScreen extends Fragment{
         filter.addAction(ACTION_MUSE_THETA);
         filter.addAction(ACTION_MUSE_WAVES);
 
+
         getActivity().registerReceiver(mReceiver, filter);
         return rootView;
     }
@@ -150,12 +142,11 @@ public class homeScreen extends Fragment{
 
     void playMusicFeedback() {
         mediaPlayer = MediaPlayer.create(getContext(), R.raw.baby_music);
-        Toast.makeText(getActivity(), "You're stressed, Relax!",
+        Toast.makeText(getActivity(), "You have reached level of Relaxation!",
                 Toast.LENGTH_LONG).show();
         mediaPlayer.start();
 
     }
-
     void showImageFeedback() {
 
         AlertDialog.Builder alert_add = new AlertDialog.Builder(getContext());
@@ -195,16 +186,45 @@ public class homeScreen extends Fragment{
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-
             if(action.equals(ACTION_MUSE_WAVES)){
                 waves =intent.getDoubleArrayExtra(EXTRA_DATA);
                 addEntry(waves);
+
+                if(waves!=null && waves[0]>0.15) {
+
+                   resizeImageView(width,500);
+                if(width<400){
+                   width+=2;
+                }
                 Log.i("receivedAlpha", String.valueOf(waves[1]));
             }
+                if(waves!=null && waves[0]<0.15) {
+
+                    resizeImageView(width,500);
+                    if(width>30){
+                        width-=1;
+                    }
+                }
+                if(width>=400) {
+
+                    if (getSharedValue("action_type") == 0)
+                        showImageFeedback();
+                    else if (getSharedValue("action_type") == 1)
+                        playMusicFeedback();
+
+                }
             }
 
 
-    };
+    }};
+
+
+    public void resizeImageView(int width, int height) {
+        ball= (ImageView)rootView.findViewById(R.id.ball);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
+        ball.setLayoutParams(layoutParams);
+
+    }
 
     private void addEntry(double[] event) {
 
@@ -278,7 +298,7 @@ public class homeScreen extends Fragment{
            set.setColor(Color.GREEN);
 
        }else if(color==3){
-           set.setColor(Color.YELLOW);
+           set.setColor(Color.GRAY);
 
        }
        set.setHighlightEnabled(false);
@@ -288,31 +308,6 @@ public class homeScreen extends Fragment{
         set.setCubicIntensity(0.2f);
         return set;
     }
-    private void feedMultiple() {
-
-        if (thread != null){
-            thread.interrupt();
-        }
-
-        thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (true){
-                    plotData = true;
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        thread.start();
-    }
-
 
     @Override
     public void onResume() {
