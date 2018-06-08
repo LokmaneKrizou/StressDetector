@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.choosemuse.example.libmuse.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -29,6 +31,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
+
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -48,6 +51,8 @@ public class homeScreen extends Fragment{
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
+
+    MediaPlayer mediaPlayer;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,28 +119,38 @@ public class homeScreen extends Fragment{
 
         preferences = getContext().getSharedPreferences("settings", MODE_PRIVATE);
 
+
         if (getSharedValue("action_type") == 0)
             showImageFeedback();
+        else if(getSharedValue("action_type") == 1)
+            playMusicFeedback();
 
-        IntentFilter Fillter = new IntentFilter();
+        IntentFilter filter = new IntentFilter();
 
         //intent filter that checks whether bluetooth state changed.
-        Fillter.addAction(ACTION_MUSE_CONNECTED);
+        filter.addAction(ACTION_MUSE_CONNECTED);
         //intent filter that checks new bluetooth devices.
-        Fillter.addAction(ACTION_MUSE_DISCONNECTED);
-        Fillter.addAction(ACTION_MUSE_ALPHA);
-        Fillter.addAction(ACTION_MUSE_BETHA);
-        Fillter.addAction(ACTION_MUSE_GAMMA);
-        Fillter.addAction(ACTION_MUSE_THETA);
-        Fillter.addAction(ACTION_MUSE_WAVES);
+        filter.addAction(ACTION_MUSE_DISCONNECTED);
+        filter.addAction(ACTION_MUSE_ALPHA);
+        filter.addAction(ACTION_MUSE_BETHA);
+        filter.addAction(ACTION_MUSE_GAMMA);
+        filter.addAction(ACTION_MUSE_THETA);
+        filter.addAction(ACTION_MUSE_WAVES);
 
-        getActivity().registerReceiver(mReceiver, Fillter);
+        getActivity().registerReceiver(mReceiver, filter);
         return rootView;
     }
 
-// TODO add Graph view (MpChartAndroid)
 // TODO add Stress level and animate the circle view(change the color according to the stress level)
 // TODO start the feedback whenever there is problem with the stress
+
+    void playMusicFeedback() {
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.baby_music);
+        Toast.makeText(getActivity(), "You're stressed, Relax!",
+                Toast.LENGTH_LONG).show();
+        mediaPlayer.start();
+
+    }
 
     void showImageFeedback() {
 

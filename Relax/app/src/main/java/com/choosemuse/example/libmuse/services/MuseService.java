@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.choosemuse.libmuse.ConnectionState;
 import com.choosemuse.libmuse.Eeg;
@@ -52,6 +53,8 @@ public class MuseService extends Service {
         manager.setMuseListener(new MuseListener() {
             @Override
             public void museListChanged() {
+                Toast.makeText(getBaseContext(), "Trying to connect!",
+                        Toast.LENGTH_LONG).show();
                 List<Muse> detectedMuses = manager.getMuses();
                 for(Muse m : detectedMuses) {
                     if(m.getName().contains("8A5B") || m.getName().contains("8334")) {
@@ -76,8 +79,6 @@ public class MuseService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-
         return START_STICKY;
     }
 
@@ -106,9 +107,13 @@ public class MuseService extends Service {
             if(p.getCurrentConnectionState() == ConnectionState.CONNECTED) {
                 Log.d("service","CONNECTED");
                 sendBroadcast(new Intent(MuseService.ACTION_MUSE_CONNECTED));
+                Toast.makeText(getBaseContext(), "Connected to Muse",
+                        Toast.LENGTH_LONG).show();
             }
             if(p.getCurrentConnectionState() == ConnectionState.DISCONNECTED) {
                 Log.d("service","DISCONNECTED");
+                Toast.makeText(getBaseContext(), "Disconnected from Muse",
+                        Toast.LENGTH_LONG).show();
                 sendBroadcast(new Intent(MuseService.ACTION_MUSE_DISCONNECTED));
             }
         }
