@@ -14,10 +14,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.choosemuse.example.libmuse.services.MuseService;
-import com.choosemuse.example.libmuse.views.addDevice;
 import com.choosemuse.example.libmuse.views.homeScreen;
 import com.choosemuse.example.libmuse.views.settings;
 
@@ -44,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                      fragment = new homeScreen();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.navigation_dashboard:
-                    fragment = new addDevice();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_notifications:

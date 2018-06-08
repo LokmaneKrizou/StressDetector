@@ -131,7 +131,7 @@ public class MuseService extends Service {
             if(p.packetType().equals(MuseDataPacketType.ALPHA_RELATIVE)) {
 //                Intent newData = new Intent(MuseService.ACTION_MUSE_ALPHA);
 //                newData.putExtra(MuseService.EXTRA_DATA, buffer);
-//                Log.i("data alpha", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
+//                Log.i("data waves", String.valueOf(buffer[0]) + " | " + String.valueOf(buffer[1]) +
 //                        " | " + String.valueOf(buffer[2]) + " | " + String.valueOf(buffer[3]));
 //                sendBroadcast(newData);
                 avg_alpha = getAverage(buffer);
