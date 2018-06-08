@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.choosemuse.example.libmuse.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -63,6 +64,9 @@ public class homeScreen extends Fragment{
 
         // enable description text
         mChart.getDescription().setEnabled(true);
+        Description description = new Description();
+        description.setText("");
+        mChart.setDescription(description);
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -93,7 +97,7 @@ public class homeScreen extends Fragment{
 
         // modify the legend ...
         l.setForm(Legend.LegendForm.LINE);
-        l.setTextColor(Color.WHITE);
+        l.setTextColor(Color.BLACK);
 
         XAxis xl = mChart.getXAxis();
         xl.setTextColor(Color.WHITE);
@@ -212,16 +216,22 @@ public class homeScreen extends Fragment{
         if (data != null) {
 
             ILineDataSet set = data.getDataSetByIndex(0);
-            ILineDataSet set2 = data2.getDataSetByIndex(0);
+            ILineDataSet set2 = data.getDataSetByIndex(0);
             ILineDataSet set3 = data.getDataSetByIndex(0);
             ILineDataSet set4 = data.getDataSetByIndex(0);
+
             // set.addEntry(...); // can be called as well
 
             if (set == null) {
                 set = createSet(2);
+                set.setLabel("Alpha");
                 set2 = createSet(1);
+                set2.setLabel("Beta");
                 set3 = createSet(3);
+                set3.setLabel("Theta");
                 set4= createSet(4);
+                set4.setLabel("Gamma");
+
                 data.addDataSet(set);
                 data.addDataSet(set2);
                 data.addDataSet(set3);
